@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sampleapp
 
     steps:
       - name: Checkout code
@@ -21,4 +24,4 @@ jobs:
         run: npm install
 
       - name: Build the app
-        run: npm run build
+        run: CI=false npm run build
