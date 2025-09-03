@@ -51,8 +51,28 @@ jobs:
           git merge dev --no-ff -m "Auto-merge dev into main [skip ci]"
           git push origin main
 
-  docker-build:
+  sync-main-to-dev:
     needs: merge-to-main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge main back to dev
+        run: |
+          git checkout dev
+          git merge main --no-ff -m "Sync main into dev [skip ci]"
+          git push origin dev
+
+  docker-build:
+    needs: sync-main-to-dev
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
