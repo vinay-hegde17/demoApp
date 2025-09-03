@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Testing the app is able to build when main is updated.
         </a>
       </header>
     </div>
