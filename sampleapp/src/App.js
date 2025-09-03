@@ -9,9 +9,6 @@ function App() {
         <p>
           Edit src/App.js and save to reload.
         </p>
-        <p>
-          Testing the app is able to build when main is updated.
-        </p>
       </header>
     </div>
   );
