@@ -48,7 +48,7 @@ jobs:
       - name: Merge dev into main
         run: |
           git checkout main
-          git merge dev --no-ff -m "Auto-merge dev into main [skip ci]"
+          git merge --ff-only dev || git merge dev --no-ff -m "Auto-merge dev into main [skip ci]"
           git push origin main
 
   sync-main-to-dev:
