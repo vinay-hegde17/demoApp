@@ -101,3 +101,9 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/demoapp-react:latest
             ghcr.io/${{ github.repository_owner }}/demoapp-react:${{ github.sha }}
+
+      - name: Remove old local images
+        run: docker image prune -af
+
+      - name: Pull latest image to ensure local update
+        run: docker pull ghcr.io/${{ github.repository_owner }}/demoapp-react:latest
