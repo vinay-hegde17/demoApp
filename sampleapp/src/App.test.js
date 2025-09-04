@@ -6,3 +6,9 @@ test('renders the logo image', () => {
   const logoElement = screen.getByAltText(/logo/i);
   expect(logoElement).toBeInTheDocument();
 });
+
+test('renders the logo image', () => {
+  render(<App />);
+  const logoText = screen.getByAltText(/learn react/);
+  expect(logoText).toBeInTheDocument();
+});
