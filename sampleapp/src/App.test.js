@@ -7,8 +7,8 @@ test('renders the logo image', () => {
   expect(logoElement).toBeInTheDocument();
 });
 
-test('renders the logo image', () => {
+test('renders the text', () => {
   render(<App />);
-  const logoText = screen.getByAltText(/learn react/);
-  expect(logoText).toBeInTheDocument();
+const textElement = screen.getByText(/learn react/i);
+expect(textElement).toBeInTheDocument();
 });
