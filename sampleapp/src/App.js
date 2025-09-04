@@ -10,7 +10,7 @@ function App() {
           Edit src/App.js and save to reload.
         </p>
         <p>
-          We’re testing our setup to ensure Docker creates a fresh image whenever the main branch is updated.
+          Updated the App.js file to test the feature which is added.
         </p>
       </header>
     </div>
