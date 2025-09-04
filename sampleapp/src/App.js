@@ -9,6 +9,9 @@ function App() {
         <p>
           Edit src/App.js and save to reload.
         </p>
+        <p>
+          We are test weather the docker is create fresh image when the main is updated.
+        </p>
       </header>
     </div>
   );
