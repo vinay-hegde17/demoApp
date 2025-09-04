@@ -29,7 +29,16 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test -- --watchAll=false
+        run: |
+          mkdir -p test-results
+          npm test -- --watchAll=false --json --outputFile=test-results/results.json
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: sampleapp/test-results
 
   merge-to-main:
     needs: test
@@ -92,6 +101,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build React app (for artifact)
+        working-directory: sampleapp
+        run: npm run build
+
+      - name: Upload build folder as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: sampleapp/build
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
