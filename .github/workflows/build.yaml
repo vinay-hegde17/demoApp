@@ -92,25 +92,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-
-      - name: Install dependencies
-        working-directory: sampleapp
-        run: npm install
-
-      - name: Build React app (for artifact)
-        working-directory: sampleapp
-        run: npm run build
-
-      - name: Upload build folder as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: sampleapp/build
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -121,17 +102,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build & push frontend image
         uses: docker/build-push-action@v4
         with:
           context: ./sampleapp
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/demoapp-react:latest
-            ghcr.io/${{ github.repository_owner }}/demoapp-react:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/demoapp-frontend:latest
+            ghcr.io/${{ github.repository_owner }}/demoapp-frontend:${{ github.sha }}
 
-      - name: Remove old local images
-        run: docker image prune -af
+      - name: Build & push backend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./samplenodeapp
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/demoapp-backend:latest
+            ghcr.io/${{ github.repository_owner }}/demoapp-backend:${{ github.sha }}
 
-      - name: Pull latest image to ensure local update
-        run: docker pull ghcr.io/${{ github.repository_owner }}/demoapp-react:latest
