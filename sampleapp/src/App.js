@@ -1,7 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import { fetchUsers } from './services/userService';
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const loadUsers = async () => {
+      const data = await fetchUsers();
+      console.log(data);
+      
+      setUsers(data);
+    };
+    loadUsers();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -12,6 +26,14 @@ function App() {
         <p>
           Updated the App.js file to test the feature which is added.
         </p>
+        <div>
+          <h3>Fetched Users:</h3>
+          <ul>
+            {users.map(user => (
+              <li key={user._id}>{user.name} - {user.email}</li>
+            ))}
+          </ul>
+        </div>
       </header>
     </div>
   );
