@@ -5,7 +5,7 @@ services:
       context: ./sampleapp
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "3030:80"
     environment:
       - REACT_APP_API_URL=http://backend:5000
     depends_on:
