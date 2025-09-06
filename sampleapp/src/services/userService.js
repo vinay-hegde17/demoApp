@@ -1,14 +1,7 @@
-const API_BASE_URL = 'http://localhost:3000';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 export const fetchUsers = async () => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/users`);
-    console.log(response);
-    
-    if (!response.ok) throw new Error('Failed to fetch users');
-    return await response.json();
-  } catch (error) {
-    console.error('Error in fetchUsers:', error);
-    return [];
-  }
+  const res = await fetch(`${API_URL}/users`);
+  if (!res.ok) throw new Error("Failed to fetch users");
+  return res.json();
 };

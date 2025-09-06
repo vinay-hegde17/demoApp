@@ -5,7 +5,9 @@ services:
       context: ./sampleapp
       dockerfile: Dockerfile
     ports:
-      - "3000:80"
+      - "8080:80"
+    environment:
+      - REACT_APP_API_URL=http://backend:5000
     depends_on:
       - backend
 
@@ -16,18 +18,16 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5000
-      - DB_HOST=db
+      - MONGO_URI=mongodb://db:27017/testingdb
     ports:
       - "5000:5000"
     depends_on:
       - db
 
   db:
-    image: postgres:15
+    image: mongo:6
     restart: always
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      MONGO_INITDB_DATABASE: testingdb
     ports:
-      - "5432:5432"
+      - "27017:27017"
