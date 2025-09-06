@@ -27,11 +27,12 @@ app.get('/', (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find();
+    console.log('backend logg',users)
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch users' });
   }
 });
 
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
