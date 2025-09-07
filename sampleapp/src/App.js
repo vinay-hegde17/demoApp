@@ -9,8 +9,6 @@ function App() {
   useEffect(() => {
     const loadUsers = async () => {
       const data = await fetchUsers();
-      console.log(data);
-      
       setUsers(data);
     };
     loadUsers();
