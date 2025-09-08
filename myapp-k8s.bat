@@ -5,7 +5,5 @@ minikube start
 echo Applying Kubernetes manifests...
 kubectl apply -f k8s/
 
-echo Getting frontend service URL...
-minikube service frontend-service --url
-
-pause
+echo Forwarding frontend-service to http://127.0.0.1:4040
+kubectl port-forward svc/frontend-service 4040:80
