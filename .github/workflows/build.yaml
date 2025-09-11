@@ -107,6 +107,7 @@ jobs:
         with:
           context: ./sampleapp
           push: true
+          load: false 
           tags: |
             ghcr.io/${{ github.repository_owner }}/demoapp-frontend:latest
             ghcr.io/${{ github.repository_owner }}/demoapp-frontend:${{ github.sha }}
@@ -116,6 +117,10 @@ jobs:
         with:
           context: ./samplenodeapp
           push: true
+          load: false 
           tags: |
             ghcr.io/${{ github.repository_owner }}/demoapp-backend:latest
             ghcr.io/${{ github.repository_owner }}/demoapp-backend:${{ github.sha }}
+
+      - name: Prune Docker images
+        run: docker image prune -af

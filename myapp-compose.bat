@@ -1,4 +1,7 @@
 @echo off
+echo Cleaning up dangling images...
+docker image prune -af
+
 echo Pulling latest images...
 docker pull ghcr.io/vinay-hegde17/demoapp-frontend:latest
 docker pull ghcr.io/vinay-hegde17/demoapp-backend:latest
