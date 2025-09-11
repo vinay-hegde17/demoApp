@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   frontend:
+    container_name: demoapp-frontend
     image: ghcr.io/vinay-hegde17/demoapp-frontend:latest
     ports:
       - "3030:80"
@@ -10,6 +11,7 @@ services:
       - backend
 
   backend:
+    container_name: demoapp-backend
     image: ghcr.io/vinay-hegde17/demoapp-backend:latest
     environment:
       - NODE_ENV=production
@@ -21,6 +23,7 @@ services:
       - db
 
   db:
+    container_name: demoapp-db
     image: mongo:latest
     restart: always
     environment:

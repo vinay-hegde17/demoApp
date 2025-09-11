@@ -10,7 +10,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit src/App.js and save to reload to learn react.
-          Updated the App.js file to test the feature which is added.
+          Handling the duplicate image creation.
         </p>
       </header>
     </div>

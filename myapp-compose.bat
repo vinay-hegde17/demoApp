@@ -1,13 +1,16 @@
 @echo off
+echo Stopping and removing old containers...
+docker-compose down
+
+echo Cleaning up unused containers and images...
+docker container prune -f
+docker image prune -af
+
 echo Pulling latest images...
-docker pull ghcr.io/vinay-hegde17/demoapp-frontend:latest
-docker pull ghcr.io/vinay-hegde17/demoapp-backend:latest
+docker-compose pull
 
 echo Starting containers with Docker Compose...
 docker-compose up -d --force-recreate
-
-echo Cleaning up dangling images...
-docker image prune -af
 
 echo App is running at:
 echo   Frontend -^> http://localhost:3030
