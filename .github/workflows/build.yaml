@@ -119,4 +119,3 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/demoapp-backend:latest
             ghcr.io/${{ github.repository_owner }}/demoapp-backend:${{ github.sha }}
-

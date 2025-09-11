@@ -1,9 +1,7 @@
 version: "3.9"
 services:
   frontend:
-    build:
-      context: ./sampleapp
-      dockerfile: Dockerfile
+    image: ghcr.io/vinay-hegde17/demoapp-frontend:latest
     ports:
       - "3030:80"
     environment:
@@ -12,9 +10,7 @@ services:
       - backend
 
   backend:
-    build:
-      context: ./samplenodeapp
-      dockerfile: Dockerfile
+    image: ghcr.io/vinay-hegde17/demoapp-backend:latest
     environment:
       - NODE_ENV=production
       - PORT=5000
@@ -25,7 +21,7 @@ services:
       - db
 
   db:
-    image: mongo:6
+    image: mongo:latest
     restart: always
     environment:
       MONGO_INITDB_DATABASE: testingdb
