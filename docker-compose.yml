@@ -16,17 +16,6 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5000
-      - MONGO_URI=mongodb://host.docker.internal:27017/testingdb
+      - MONGO_URI=mongodb+srv://vinay:S%25qdBUJ%21h4%21wg46@cluster0.ewnxx0a.mongodb.net/testingdb?retryWrites=true&w=majority&appName=Cluster0
     ports:
       - "5000:5000"
-    depends_on:
-      - db
-
-  db:
-    container_name: demoapp-db
-    image: mongo:latest
-    restart: always
-    environment:
-      MONGO_INITDB_DATABASE: testingdb
-    ports:
-      - "27017:27017"

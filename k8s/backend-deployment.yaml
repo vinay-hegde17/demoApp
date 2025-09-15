@@ -23,7 +23,7 @@ spec:
         - name: NODE_ENV
           value: "production"
         - name: MONGO_URI
-          value: "mongodb://mongo-service:27017/testingdb"
+          value: "mongodb+srv://vinay:S%25qdBUJ%21h4%21wg46@cluster0.ewnxx0a.mongodb.net/testingdb?retryWrites=true&w=majority&appName=Cluster0"
 ---
 apiVersion: v1
 kind: Service
