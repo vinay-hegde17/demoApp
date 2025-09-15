@@ -20,17 +20,23 @@ const connectToDB = async () => {
 
 connectToDB();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find();
-    console.log('backend logg',users)
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch users' });
+  }
+});
+
+app.post('/users', async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const userInfo = await User.create({ name, email });
+    res.status(201).json(userInfo);
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({ error: 'Failed to create user' });
   }
 });
 
