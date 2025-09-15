@@ -1,13 +1,13 @@
 services:
-  frontend:
-    container_name: demoapp-frontend
-    image: ghcr.io/vinay-hegde17/demoapp-frontend:latest
-    ports:
-      - "3030:80"
-    environment:
-      - REACT_APP_API_URL=http://backend:5000
-    depends_on:
-      - backend
+frontend:
+  build:
+    context: ./sampleapp
+    args:
+      REACT_APP_API_URL: http://backend:5000
+  ports:
+    - "3030:80"
+  depends_on:
+    - backend
 
   backend:
     container_name: demoapp-backend
